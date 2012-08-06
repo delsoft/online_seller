@@ -11,7 +11,12 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120804135155) do
+ActiveRecord::Schema.define(:version => 20120806205355) do
+
+  create_table "lixos", :force => true do |t|
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "tipo_unidade_medidas", :force => true do |t|
     t.string   "nome"
