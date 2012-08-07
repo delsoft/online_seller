@@ -1,4 +1,4 @@
- ActiveRecord::Base.logger = Logger.new(STDOUT)
+#ActiveRecord::Base.logger = Logger.new(STDOUT)
 
 module MyModule
 
@@ -11,13 +11,13 @@ module MyModule
       end
                
       module ClassMethods
-         @@fields_to_be_formatted ||= {}
-         
+                  
+         @@fields_to_be_formatted ||= {}         
 
         def fields_to_be_formatted
            @@fields_to_be_formatted 
         end
-        
+         
         def well_formatted field_name, options={}                   
           @@fields_to_be_formatted[self.name.to_sym] ||= []  
           @@fields_to_be_formatted[self.name.to_sym] << { :attribute => field_name.to_sym, :options => options }          
@@ -25,11 +25,35 @@ module MyModule
       end
 
 protected      
-
+  
       def invoke_well_formatted field, options={}
-          logger.debug "invoke_well_formatted => " + field.to_s
-          logger.debug "    options => " + options.inspect
-          #puts self.class.fields_to_be_formatted.inspect
+
+        raise "coluna '#{field.to_s}' inexistente\n verifique o comando \"#{self.class.name}.well_formated :#{field.to_s}\" " unless self.class.column_names.include?(field.to_s)
+         
+        return unless send(field.to_s) && send(field.to_s + "_changed?") 
+        
+        tmp = send(field.to_s).to_s.squish
+    
+        has_just = options.keys[ options.keys.index(:left_just) || options.keys.index(:right_just) || 999 ]
+        if has_just then
+          just_method = has_just.to_s[0] + "just"  
+          just_len = options[has_just][:lenght] || value.lenght
+          just_char = options[has_just][:char] || "0"
+          tmp = tmp.send just_method, just_len, just_char
+        end
+        
+        if options[:with] == :downcase || options[:downcase] then
+          tmp = tmp.downcase
+        elsif options[:with] == :upcase || options[:upcase] then
+          tmp = tmp.upcase
+        elsif options[:with]  == :blank_only || options[:blank_only] then
+          //none
+        else
+          tmp = tmp.capitalize
+        end
+
+        send field.to_s + '=',  tmp
+
       end
       
       def ensure_well_formatted
@@ -43,18 +67,16 @@ protected
         end
         
       end
+    #end
+  #end
 end
 
 ActiveRecord::Base.send :include, MyModule
 
-
-
 class TipoUnidadeMedida < ActiveRecord::Base
   attr_accessible :formato, :nome
   
-  well_formatted :nome, :www => 'www', :tttt => 'rrrr'
-  well_formatted :tste
-  
+  well_formatted :nome, :right_just => { :lenght => 10, :char => '@' }   
     
   validates :nome, :presence => true, :uniqueness => true
   validates :nome_abreviado, :presence => true, :uniqueness => true
