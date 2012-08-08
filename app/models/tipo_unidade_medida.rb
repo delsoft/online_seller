@@ -1,6 +1,6 @@
- ActiveRecord::Base.logger = Logger.new(STDOUT)
+# ActiveRecord::Base.logger = Logger.new(STDOUT)
 
-module MyModule
+module WellFormatted
 
       def self.included(base_class)
         base_class.extend ClassMethods
@@ -45,7 +45,7 @@ protected
       end
 end
 
-ActiveRecord::Base.send :include, MyModule
+ActiveRecord::Base.send :include, WellFormatted
 
 
 
