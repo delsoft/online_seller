@@ -1,4 +1,9 @@
+require_relative 'well_fromatted/act_as_well_formatted.rb'
 module WellFormatted
+  
+end
+
+module XXXWellFormatted
 
       def self.included(base_class)
         base_class.extend ClassMethods
@@ -65,4 +70,4 @@ module WellFormatted
       end
 end
 
-ActiveRecord::Base.send :include, WellFormatted
+#ActiveRecord::Base.send :include, WellFormatted

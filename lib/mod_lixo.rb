@@ -1,4 +1,6 @@
-#require 'myxx/teste'
+
+require 'myxx/teste'
+
 module Mod_lixo
   module Other
     class ALixo
