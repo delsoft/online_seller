@@ -11,11 +11,53 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120806205355) do
+ActiveRecord::Schema.define(:version => 20120913201135) do
+
+  create_table "empresas", :force => true do |t|
+    t.string   "nome"
+    t.string   "logo"
+    t.integer  "grupo_empresa_id"
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
+  end
+
+  create_table "grupo_empresas", :force => true do |t|
+    t.string   "nome"
+    t.string   "logo"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "grupo_produtos", :force => true do |t|
+    t.integer  "empresa_id"
+    t.string   "parent_id"
+    t.string   "nome"
+    t.string   "descricao"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "lixos", :force => true do |t|
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+  end
+
+  create_table "preco_produtos", :force => true do |t|
+    t.integer  "produto_id"
+    t.date     "vigencia"
+    t.decimal  "preco",      :precision => 8, :scale => 2
+    t.boolean  "ativo"
+    t.datetime "created_at",                               :null => false
+    t.datetime "updated_at",                               :null => false
+  end
+
+  create_table "produtos", :force => true do |t|
+    t.string   "nome"
+    t.integer  "grupo_produto_id"
+    t.integer  "empresa_id"
+    t.string   "descricao"
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
   end
 
   create_table "tipo_unidade_medidas", :force => true do |t|

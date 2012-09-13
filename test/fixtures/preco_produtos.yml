@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  produto_id: 1
+  vigencia: 2012-09-13
+
+two:
+  produto_id: 1
+  vigencia: 2012-09-13
