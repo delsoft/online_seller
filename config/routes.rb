@@ -1,4 +1,6 @@
 OnlineSeller::Application.routes.draw do
+  root :to => "main#index"
+
   devise_for :usuarios
 
   # The priority is based upon order of creation:
