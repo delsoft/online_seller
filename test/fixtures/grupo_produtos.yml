@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  parent_id: MyString
+  integer: MyString
+  nome: MyString
+  descricao: MyString
+
+two:
+  parent_id: MyString
+  integer: MyString
+  nome: MyString
+  descricao: MyString
