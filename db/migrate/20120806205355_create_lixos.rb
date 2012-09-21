@@ -1,6 +1,6 @@
 class CreateLixos < ActiveRecord::Migration
   def change
-    create_table :lixos do |t|
+    create_table :lixo do |t|
 
       t.timestamps
     end

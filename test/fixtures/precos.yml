@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  produto_id: 1
+  fornecedor_id: 1
+  Vigencia: MyString
+  DateTime: MyString
+
+two:
+  produto_id: 1
+  fornecedor_id: 1
+  Vigencia: MyString
+  DateTime: MyString
