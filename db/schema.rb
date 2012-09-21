@@ -11,7 +11,6 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-<<<<<<< HEAD
 ActiveRecord::Schema.define(:version => 20120913212521) do
 
   create_table "empresas", :force => true do |t|
@@ -20,6 +19,12 @@ ActiveRecord::Schema.define(:version => 20120913212521) do
     t.integer  "grupo_empresa_id"
     t.datetime "created_at",       :null => false
     t.datetime "updated_at",       :null => false
+  end
+
+  create_table "fornecedor", :force => true do |t|
+    t.string   "nome"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "grupo_empresas", :force => true do |t|
@@ -37,19 +42,17 @@ ActiveRecord::Schema.define(:version => 20120913212521) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
-=======
-ActiveRecord::Schema.define(:version => 20120825043816) do
->>>>>>> varios
-
-  create_table "fornecedor", :force => true do |t|
-    t.string   "nome"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
 
   create_table "lixo", :force => true do |t|
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+  end
+
+  create_table "pesquisa", :force => true do |t|
+    t.string   "palavra"
+    t.string   "match_code", :limit => 4
+    t.datetime "created_at",              :null => false
+    t.datetime "updated_at",              :null => false
   end
 
   create_table "preco", :force => true do |t|
@@ -59,7 +62,6 @@ ActiveRecord::Schema.define(:version => 20120825043816) do
     t.datetime "updated_at", :null => false
   end
 
-<<<<<<< HEAD
   create_table "preco_produtos", :force => true do |t|
     t.integer  "produto_id"
     t.date     "vigencia"
@@ -67,6 +69,13 @@ ActiveRecord::Schema.define(:version => 20120825043816) do
     t.boolean  "ativo"
     t.datetime "created_at",                               :null => false
     t.datetime "updated_at",                               :null => false
+  end
+
+  create_table "produto", :force => true do |t|
+    t.string   "nome"
+    t.integer  "fornecedor_id"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
   end
 
   create_table "produtos", :force => true do |t|
@@ -78,17 +87,7 @@ ActiveRecord::Schema.define(:version => 20120825043816) do
     t.datetime "updated_at",       :null => false
   end
 
-  create_table "tipo_unidade_medidas", :force => true do |t|
-=======
-  create_table "produto", :force => true do |t|
-    t.string   "nome"
-    t.integer  "fornecedor_id"
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
-  end
-
   create_table "tipo_unidade_medida", :force => true do |t|
->>>>>>> varios
     t.string   "nome"
     t.string   "nome_abreviado"
     t.string   "formato"
